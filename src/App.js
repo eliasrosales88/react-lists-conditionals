@@ -1,10 +1,12 @@
 import React, { Component } from 'react';
 import './App.css';
+import ValidationComponent from './ValidationComponent/ValidationComponent';
 
 class App extends Component {
   state = {
     text:'',
     textLength: 0,
+    isValid: false,
     lettersArray: []
   }
 
@@ -23,6 +25,7 @@ class App extends Component {
     this.setState({
       [name]: value,
       textLength: value.length,
+      isValid: value.length > 5,
       lettersArray: lettersArrayCopy
     })
 
@@ -44,6 +47,7 @@ class App extends Component {
 
         <input type='text' name='text' onChange={this.changeTextHandler} />
         <p>{this.state.textLength}</p>
+        <ValidationComponent isValid={this.state.isValid}/>
       </div>
     );
   }
